@@ -4,9 +4,9 @@ import {Subject, Observable} from "rxjs/Rx";
 
 declare let io:any;
 
-if (io && io.sails) {
+if (io && io.trails) {
 
-    // pullrequest #2: "Update sails.service.ts" by mryarbles
+    // pullrequest #2: "Update trails.service.ts" by mryarbles
     // io.socket.isConnected -> io.socket.isConnected()
     if (io && io.socket && io.socket.isConnected()) {
         io.socket.disconnect();
@@ -29,7 +29,7 @@ interface  A2SResponse {
 }
 
 @Injectable()
-export class SailsService {
+export class TrailsService {
 
     private _io:any;
     private _connected:boolean = false;
@@ -104,7 +104,7 @@ export class SailsService {
         // // If explicit connection url is specified, save it to options
         // this._opts.url = url || this._opts.url || this._serverUrl;
 
-        this._io = io.sails.connect(this._opts);
+        this._io = io.trails.connect(this._opts);
         this._connected = true;
     }
 
@@ -112,7 +112,7 @@ export class SailsService {
     /**
      * @title request
      *
-     * @description Send a virtual request to a Sails server using Socket.io.
+     * @description Send a virtual request to a Trails server using Socket.io.
      * This function is very similar to .get(), .post(), etc.
      * except that it provides lower-level access to the request headers, parameters,
      * method, and URL of the request.
@@ -133,7 +133,7 @@ export class SailsService {
    *      }
    *    }
    *
-   *    this._sailsService.request().subscribe(data => {
+   *    this._trailsService.request().subscribe(data => {
    *      // do something with the data
    *    })
    *
