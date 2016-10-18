@@ -23,7 +23,7 @@ Here I will describe on how to install and use it:
 
 install the package with the node package manager (npm)
 
-```npm install --save angular2-sails```
+```npm install --save angular2-trails-realtime```
 
 [back to top](#index)
 
@@ -41,7 +41,7 @@ module.exports = function (defaults) {
   return new Angular2App(defaults, {
     vendorNpmFiles: [
      ...
-      'angular2-sails/dist/**/*.+(js|js.map)',
+      'angular2-trails-realtime/dist/**/*.+(js|js.map)',
     ]
   })
     ;
@@ -56,7 +56,7 @@ Here you have to register the module in the systemJS configuration and define th
 /** Map relative paths to URLs. */
 const map:any = {
   ...
-  'angular2-sails': 'vendor/angular2-sails/dist'
+  'angular2-trails-realtime': 'vendor/angular2-trails-realtime/dist'
 };
 ```
 
@@ -64,7 +64,7 @@ const map:any = {
 /** User packages configuration. */
 const packages:any = {
     ...,
-    'angular2-sails': {
+    'angular2-trails-realtime': {
         defaultExtension: 'js',
         main: 'index.js'
       },
@@ -79,22 +79,22 @@ const packages:any = {
 
 #### the import statement looks like this:
 
-```import { SailsService } form 'angular2-sails';```
+```import { TrailsService } form 'angular2-trails-realtime';```
 
 [back to top](#index)
 
-#### You can provide the SailsService in a Component by the provider array or (not recommended) by providing it in the bootstrap of your application.
+#### You can provide the TrailsService in a Component by the provider array or (not recommended) by providing it in the bootstrap of your application.
 
 Example in Component:
 ```typescript
 import { Component, OnInit } from '@angular/core';
-import { SailsService } from 'angular2-sails';
+import { TrailsService } from 'angular2-trails-realtime';
 
 @Component({
     moduleId: module.id,
     selector: 'my',
     templateUrl: 'my.component.html',
-    providers: [SailsService]
+    providers: [TrailsService]
 })
 export class MyComponent implements OnInit {
     constructor() { }
@@ -106,7 +106,7 @@ export class MyComponent implements OnInit {
 // and in a subcomponent of the provider component
 
 import { Component, OnInit } from '@angular/core';
-import { SailsService } from 'angular2-sails';
+import { TrailsService } from 'angular2-trails-realtime';
 
 @Component({
     moduleId: module.id,
@@ -114,7 +114,7 @@ import { SailsService } from 'angular2-sails';
     templateUrl: 'my-sub.component.html',
 })
 export class MySubComponent implements OnInit {
-    constructor(private _sailsService:SailsService) { }
+    constructor(private _TrailsService:TrailsService) { }
 
     ngOnInit() { }
 
@@ -125,18 +125,18 @@ export class MySubComponent implements OnInit {
 Example in bootstrap (not recommended):
 ```typescript
 ...
-import { SailsService } from 'angular2-sails';
+import { TrailsService } from 'angular2-trails-realtime';
 
 bootstrap(AppComponent, [
   ...,
-  SailsService
+  TrailsService
 ]);
 
 
 // and then again in a component
 
 import { Component, OnInit } from '@angular/core';
-import { SailsService } from 'angular2-sails';
+import { TrailsService } from 'angular2-trails-realtime';
 
 @Component({
     moduleId: module.id,
@@ -144,7 +144,7 @@ import { SailsService } from 'angular2-sails';
     templateUrl: 'app.component.html',
 })
 export class AppComponent implements OnInit {
-    constructor(private _sailsService:SailsService) { }
+    constructor(private _TrailsService:TrailsService) { }
 
     ngOnInit() { }
 
@@ -159,21 +159,21 @@ export class AppComponent implements OnInit {
 You inject the service by the constructor where you want to use it.
 
 ```typescript
-constructor(private _sailsService:SailsService) { }
+constructor(private _TrailsService:TrailsService) { }
 ```
 
 first you have to connect your service:
 
 ```typescript
 ngOnInit() {
-    this._sailsService.connect()
+    this._TrailsService.connect()
 }
 ```
 
 you can pass in an Url or Options, where to connect to
 ```typescript
 ngOnInit() {
-    this._sailsService.connect("http://localhost:1337");
+    this._TrailsService.connect("http://localhost:1337");
     // or
     letl opts = {
         url: "http://localhost:1337",
@@ -181,7 +181,7 @@ ngOnInit() {
         headers: {...},
         ...
     }
-    this._sailsService.connect(opts);
+    this._TrailsService.connect(opts);
 }
 ```
 for more information, please visit [sailsjs.org Documentation for SailsSocket Properties](http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket/properties)
@@ -192,7 +192,7 @@ and your sails app runs separately e.g on localhost:1337
 
 
 
-The following methods are implemented in the SailsService and will always return you an Observable<T>:
+The following methods are implemented in the TrailsService and will always return you an Observable<T>:
 
 - get(path,data):Observable
 - post(path,data):Observable
@@ -220,7 +220,7 @@ You then have to subscribe to that Observable, to get the data.
 ```typescript
 
 import { Component, OnInit } from '@angular/core';
-import { SailsService } from 'angular2-sails';
+import { TrailsService } from 'angular2-trails-realtime';
 
 @Component({
     moduleId: module.id,
@@ -232,11 +232,11 @@ export class AppComponent implements OnInit {
     // declare the variable for the template
     public users:any[];
 
-    constructor(private _sailsService:SailsService) { }
+    constructor(private _TrailsService:TrailsService) { }
 
     ngOnInit() {
 
-    this._sailsService
+    this._TrailsService
          .get('/users')
          .subscribe(
             (resData) => { this.users = resData.data},
@@ -284,7 +284,7 @@ or even better, you use the *async* pipe of angular, and just pass the Observabl
 
 ```typescript
 import { Component, OnInit } from '@angular/core';
-import { SailsService } from 'angular2-sails';
+import { TrailsService } from 'angular2-trails-realtime';
 import { Observable } from "rxjs/Rx";
 
 @Component({
@@ -297,12 +297,12 @@ export class AppComponent implements OnInit {
     // declare the variable for the template
     public users$:Observable<any[]>;
 
-    constructor(private _sailsService:SailsService) { }
+    constructor(private _TrailsService:TrailsService) { }
 
     ngOnInit() {
 
     // now we are passing the Observable to the template variable
-    this.users$ = this._sailsService.get('/users');
+    this.users$ = this._TrailsService.get('/users');
 
     }
 
