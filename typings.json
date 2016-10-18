@@ -1,5 +1,5 @@
 {
-  "name": "angular2-sails",
+  "name": "angular2-trails-realtime",
   "dependencies": {},
   "ambientDevDependencies": {
     "angular-protractor": "registry:dt/angular-protractor#1.5.0+20160425143459",

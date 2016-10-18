@@ -1,1 +1,1 @@
-export * from './sails.service'
+export * from './trails.service'

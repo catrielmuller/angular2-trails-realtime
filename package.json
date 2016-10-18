@@ -1,7 +1,7 @@
 {
-  "name": "angular2-sails",
-  "version": "0.1.4",
-  "description": "An angular module for using the sails socket.io api in angular2 (@angular)",
+  "name": "angular2-trails-realtime",
+  "version": "0.1.0",
+  "description": "An angular module for using the trails-realtime with primus in angular2 (@angular)",
   "main": "index.js",
   "scripts": {
     "postinstall": "typings install",
@@ -12,24 +12,24 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joeherold/angular2-sails.git"
+    "url": "git+https://github.com/catrielmuller/angular2-trails-realtime"
   },
   "keywords": [
-    "sails",
-    "sailsjs",
-    "socket",
-    "socket.io",
+    "realtime",
+    "trailsjs",
+    "trails",
+    "primus",
     "io",
     "angular",
     "angular2",
     "ng2"
   ],
-  "author": "Johannes Pichler <j.pichler@webpixels.at>",
+  "author": "Catriel Muller <j.sarasa@sarasa.at>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/joeherold/angular2-sails/issues"
+    "url": "https://github.com/catrielmuller/angular2-trails-realtime/issues"
   },
-  "homepage": "https://github.com/joeherold/angular2-sails#readme",
+  "homepage": "https://github.com/catrielmuller/angular2-trails-realtime#readme",
   "dependencies": {
 
   },

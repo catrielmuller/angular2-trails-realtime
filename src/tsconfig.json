@@ -19,7 +19,7 @@
   ],
   "files": [
     "index.ts",
-    "sails.service.ts",
+    "trails.service.ts",
     "typings.d.ts"
   ]
 }
